@@ -273,10 +273,9 @@
         <span class="cview">View certificate ↗</span>
       </button>
       
-      <button class="cert" data-img="certs/example.jpg" data-name="Yellow Belt">
+      <button class="cert" data-img="" data-name="Yellow Belt">
         <div class="cname">Lean Six Sigma: Yellow Belt</div>
         <div class="cissuer">Goldman Sachs · 2025</div>
-        <span class="cview">View certificate ↗</span>
       </button>
 
       <button class="cert" data-img="https://www.coursera.org/account/accomplishments/verify/5MXLC8GEW5MJ" data-name="Python Data Structures">
@@ -339,7 +338,7 @@
         <span class="cview">View certificate ↗</span>
       </button>
 
-      <button class="cert">
+      <button class="cert" data-img="" data-name="Alteryx">
         <div class="cname">Alteryx Core Designer</div>
         <div class="cissuer">Alteryx · 2021</div>
       </button>
@@ -372,6 +371,7 @@
 
   document.querySelectorAll('.cert').forEach(c=>{
   c.addEventListener('click',()=>{
+     if(!c.dataset.img) return;   // no file attached → do nothing
     // external links OR any PDF → open in new tab
     if(/^https?:\/\//i.test(c.dataset.img) || /\.pdf$/i.test(c.dataset.img)){
       window.open(c.dataset.img,'_blank','noopener');
