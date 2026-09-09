@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christopher Long's — Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spline+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fafaf8;
+    --surface:#ffffff;
+    --ink:#1a1a1a;
+    --muted:#6b6b6b;
+    --line:#e4e4e0;
+    --accent:#2d4a3e;
+    --accent-soft:#eef2ef;
+    --shadow:0 1px 3px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.05);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:'Spline Sans',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px}
+
+  /* ---------- HEADER ---------- */
+  header{padding:72px 0 40px;border-bottom:1px solid var(--line)}
+  .name{font-family:'Fraunces',serif;font-size:clamp(2.4rem,6vw,3.6rem);font-weight:500;letter-spacing:-.02em;line-height:1.05}
+  .title{font-size:1.1rem;color:var(--accent);font-weight:500;margin-top:8px}
+  .blurb{color:var(--muted);margin-top:16px;max-width:560px;font-size:1.02rem}
+  .contact{display:flex;flex-wrap:wrap;gap:18px;margin-top:24px;font-size:.92rem;color:var(--muted)}
+  .contact a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:1px;transition:.2s}
+  .contact a:hover{color:var(--accent);border-color:var(--accent)}
+
+  /* ---------- SITE BUTTONS ---------- */
+  .sites{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+  .site-btn{
+    display:flex;flex-direction:column;gap:2px;
+    padding:16px 22px;border-radius:14px;text-decoration:none;
+    background:var(--surface);border:1px solid var(--line);
+    box-shadow:var(--shadow);transition:.22s ease;flex:1;min-width:200px;
+  }
+  .site-btn:hover{transform:translateY(-3px);border-color:var(--accent)}
+  .site-btn .lbl{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:500;color:var(--ink)}
+  .site-btn .desc{font-size:.85rem;color:var(--muted)}
+  .site-btn .arrow{color:var(--accent);font-size:.85rem;margin-top:6px}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:48px 0;border-bottom:1px solid var(--line)}
+  .sec-head{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:500;margin-bottom:28px;letter-spacing:-.01em}
+
+  /* ---------- EXPERIENCE ---------- */
+  .job{display:grid;grid-template-columns:140px 1fr;gap:24px;margin-bottom:34px}
+  .job:last-child{margin-bottom:0}
+  .job .dates{font-size:.88rem;color:var(--muted);padding-top:3px}
+  .job .role{font-weight:600;font-size:1.08rem}
+  .job .company{color:var(--accent);font-size:.96rem;margin-bottom:8px}
+  .job ul{list-style:none;color:var(--muted);font-size:.96rem}
+  .job li{position:relative;padding-left:18px;margin-bottom:5px}
+  .job li::before{content:"–";position:absolute;left:0;color:var(--accent)}
+  @media(max-width:600px){.job{grid-template-columns:1fr;gap:6px}}
+
+  /* ---------- CERTS ---------- */
+  .certs{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+  .cert{
+    text-align:left;cursor:pointer;background:var(--surface);
+    border:1px solid var(--line);border-radius:12px;padding:18px 20px;
+    transition:.2s;font-family:inherit;
+  }
+  .cert:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:var(--shadow)}
+  .cert .cname{font-weight:600;font-size:1rem;color:var(--ink)}
+  .cert .cissuer{font-size:.86rem;color:var(--muted);margin-top:3px}
+  .cert .cview{font-size:.8rem;color:var(--accent);margin-top:10px;display:inline-flex;align-items:center;gap:5px}
+
+  /* ---------- MODAL ---------- */
+  .modal{
+    position:fixed;inset:0;background:rgba(20,20,20,.78);
+    display:none;align-items:center;justify-content:center;
+    padding:24px;z-index:100;backdrop-filter:blur(4px);
+  }
+  .modal.open{display:flex;animation:fade .2s ease}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  .modal-inner{
+    background:var(--surface);border-radius:16px;max-width:760px;width:100%;
+    max-height:90vh;overflow:auto;position:relative;padding:14px;
+  }
+  .modal-inner img{width:100%;border-radius:10px;display:block}
+  .modal-cap{padding:14px 6px 6px;font-family:'Fraunces',serif;font-size:1.1rem}
+  .modal-close{
+    position:absolute;top:18px;right:18px;width:38px;height:38px;border-radius:50%;
+    background:var(--surface);border:1px solid var(--line);cursor:pointer;
+    font-size:1.2rem;line-height:1;color:var(--ink);box-shadow:var(--shadow);z-index:2;
+  }
+  .modal-close:hover{background:var(--accent-soft)}
+
+  footer{padding:40px 0 60px;text-align:center;color:var(--muted);font-size:.86rem}
+</style>
+</head>
+<body>
+
+<!-- ============ EDIT YOUR NAME / INTRO / LINKS HERE ============ -->
+<header>
+  <div class="wrap">
+    <h1 class="name">Christopher Long</h1>
+    <p class="title">Full-Stack Engineer | Cybersecurity | Data Engineer | AI Specialist</p>
+    <p class="blurb">I'm a multifaceted professional whose career spans data analytics, software engineering, cybersecurity, and entrepreneurship. My background includes several years at Goldman Sachs, where I advanced automating workflows and mentoring junior analysts to drive measurable efficiency gains and improved customer satisfaction. Alongside that foundation in analytics, I've developed full-stack applications, built secure systems and tools in Python, C#, and JavaScript. I hold a Utah Personal Lines P&C insurance license, FAA certifications as an instrument-rated private pilot and drone pilot, and dozens of certifications across data science, cybersecurity, and business analysis. I'm a lifelong learner who thrives on solving complex problems, building practical solutions, and taking on new challenges. Whether I'm engineering software, analyzing data, or educating others, I bring curiosity, dedication, and a strong commitment to quality to everything I do.</p>
+
+    <div class="contact">
+      <a href="mailto:chris14304@gmail.com">chris14304@gmail.com</a>
+      <a href="tel:+18015563218">(801) 556-3218</a>
+      <span>UTAH, UNITED STATES of AMERICA</span>
+    </div>
+
+    <!-- Job platform profiles -->
+    <div class="contact">
+      <a href="https://www.linkedin.com/in/chris-t-long/" target="_blank">LinkedIn</a>
+      <a href="https://profile.indeed.com/p/christopherl-skpy21a" target="_blank">Indeed</a>
+      <a href="https://alison.com/profile/20185007" target="_blank">Alison</a>
+      <a href="https://www.w3profile.com/Chris_Long/" target="_blank">W3 Schools</a>
+      <a href="https://public.tableau.com/app/profile/chris.long6542/vizzes" target="_blank">Tableau Public</a>
+    </div>
+    <p class="blurb">AI experience with: Grok, Copilot, Gemini, Claude, and ChatGPT.</p>
+    <!-- Featured site buttons -->
+    <div class="sites">
+      <a class="site-btn" href="https://pcdn-plum.vercel.app/" target="_blank">
+        <span class="lbl">Public Cyber Defense Network</span>
+        <span class="desc">My cybersecurity organization</span>
+        <span class="arrow">Visit site →</span>
+      </a>
+      <a class="site-btn" href="https://airbnb-dashboard-orpin.vercel.app/" target="_blank">
+        <span class="lbl">Your Extended Stay LLC Airbnb Dashboard</span>
+        <span class="desc">My Airbnb management platform</span>
+        <span class="arrow">Visit site → (Airbnb is closed)</span>
+      </a>
+      <a class="site-btn" href="index.html" target="_blank">
+        <span class="lbl">Resume</span>
+        <span class="desc">My resume and professional background</span>
+        <span class="arrow">Visit page →</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ CERTIFICATIONS — set data-img to each cert image ============ -->
+<section>
+  <div class="wrap">
+    <h2 class="sec-head">Languages</h2>
+    <div class="certs">
+      
+      <button class="cert" data-img="https://verify.w3schools.com/1OUJ7UM71E" data-name="Python">
+        <div class="cname">Python</div>
+        <div class="cissuer">W3 Schools · 2024</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+
+      <button class="cert" data-img="https://alison.com/certification/check/a56d532eae" data-name="Python">
+        <div class="cname">Python Programming</div>
+        <div class="cissuer">Alison · 2024</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+
+      <button class="cert" data-img="https://alison.com/certification/check/019cbf52ab" data-name="Python">
+        <div class="cname">Intro to Python</div>
+        <div class="cissuer">Alison · 2024</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+      
+      <button class="cert" data-img="https://alison.com/certification/check/f3c7a45d89" data-name="Java">
+        <div class="cname">Beginner Java</div>
+        <div class="cissuer">Alison · 2024</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+
+      <button class="cert" data-img="https://verify.w3schools.com/1PEK5STVMV" data-name="Postgre">
+        <div class="cname">Postgre SQL</div>
+        <div class="cissuer">W3 Schools · 2024</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+
+      <button class="cert" data-img="https://verify.w3schools.com/1NEA69BU14" data-name="SQL">
+        <div class="cname">SQL</div>
+        <div class="cissuer">W3 Schools · 2023</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+
+      <button class="cert" data-img="https://verify.w3schools.com/1NEDZZL2Z0" data-name="MySQL">
+        <div class="cname">MySQL</div>
+        <div class="cissuer">W3 Schools · 2023</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+
+      <button class="cert" data-img="https://verify.w3schools.com/1NR5ZDZYPV" data-name="R">
+        <div class="cname">R</div>
+        <div class="cissuer">W3 Schools · 2023</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="sec-head">Cybersecurity</h2>
+    <div class="certs">
+      
+       <button class="cert" data-img="https://www.coursera.org/account/accomplishments/verify/NE4GVVSMENXV?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=pdf_header_button&utm_product=course" data-name="Cybersecurity">
+        <div class="cname">Cybersecurity Tools & Cyber Attacks Fundamentals</div>
+        <div class="cissuer">IBM · 2024</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+
+      <button class="cert" data-img="https://verify.w3schools.com/1NSPHGWJMK" data-name="Cybersecurity">
+        <div class="cname">Cybersecurity</div>
+        <div class="cissuer">W3 Schools · 2023</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="sec-head">Visualizations</h2>
+    <div class="certs">
+      
+      <button class="cert" data-img="https://www.coursera.org/account/accomplishments/verify/A3SYNU4VY9FJ?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=pdf_header_button&utm_product=project" data-name="Power BI">
+        <div class="cname">Power BI Desktop Fundamentals</div>
+        <div class="cissuer">Coursera · 2024</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+
+      <button class="cert" data-img="https://www.coursera.org/account/accomplishments/specialization/KW762KZWVVTF?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=s12n" data-name="Tableau">
+        <div class="cname">Tableau</div>
+        <div class="cissuer">UC Davis · 2024</div>
+        <span class="cview">View certificate ↗</span>
+      </button>     
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="sec-head">Other</h2>
+    <div class="certs">
+
+      <button class="cert" data-img="https://alison.com/certification/check/29f71748c2" data-name="Yellow Belt">
+        <div class="cname">Lean Six Sigma: Yellow Belt</div>
+        <div class="cissuer">Alison · 2025</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+
+      <button class="cert" data-img="https://alison.com/certification/check/7aeab096d1" data-name="White Belt">
+        <div class="cname">Lean Six Sigma: White Belt</div>
+        <div class="cissuer">Alison · 2025</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+
+      <button class="cert" data-img="https://alison.com/certification/check/ab305e6537" data-name="QA">
+        <div class="cname">Fraud Detection & Prevention</div>
+        <div class="cissuer">Alison · 2025</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+
+      <button class="cert" data-img="https://alison.com/certification/check/b518e2b49b" data-name="QA">
+        <div class="cname">Excellence in Quality Assurance</div>
+        <div class="cissuer">Alison · 2025</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+
+      <button class="cert" data-img="certs/example.jpg" data-name="Remote Team">
+        <div class="cname">Remote Team Management & Leadership</div>
+        <div class="cissuer">Alison · 2025</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+
+      <button class="cert" data-img="https://alison.com/certification/check/4e94c1c235" data-name="Digital Forensics">
+        <div class="cname">Digital Forensics Investigation</div>
+        <div class="cissuer">Alison · 2025</div>
+        <span class="cview">View certificate ↗</span>
+      </button>      
+
+      <button class="cert" data-img="https://www.coursera.org/account/accomplishments/verify/AKJ45ZYG4Z6K?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course" data-name="Supervised ML">
+        <div class="cname">Supervised Machine Learning</div>
+        <div class="cissuer">Stanford University · 2024</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+
+      <button class="cert" data-img="https://www.coursera.org/account/accomplishments/verify/LTTAEUUW4VRC?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course" data-name="Business Analysis">
+        <div class="cname">Business Analysis Fundamentals</div>
+        <div class="cissuer">Starweaver · 2024</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+      
+      <button class="cert" data-img="https://verify.w3schools.com/1P776QXX3W" data-name="Python">
+        <div class="cname">Backend Python Developer</div>
+        <div class="cissuer">W3 Schools · 2024</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+
+      <button class="cert" data-img="https://alison.com/certification/check/c1e671d198" data-name="Azure">
+        <div class="cname">Microsoft Azure Administrator</div>
+        <div class="cissuer">Alison · 2024</div>
+        <span class="cview">View certificate ↗</span>
+      </button>      
+
+      <button class="cert" data-img="https://verify.w3schools.com/1PDTFFK7D3" data-name="Problem Solving">
+        <div class="cname">Problem Solving & Logical Reasoning</div>
+        <div class="cissuer">W3 Schools · 2024</div>
+        <span class="cview">View certificate ↗</span>
+      </button>      
+
+      <button class="cert" data-img="https://alison.com/certification/check/38ef3a73a9" data-name="Digital Forensics">
+        <div class="cname">Digital Forensics Examiner</div>
+        <div class="cissuer">Alison · 2024</div>
+        <span class="cview">View certificate ↗</span>
+      </button>      
+
+      <button class="cert" data-img="https://verify.w3schools.com/1NETL4HKXH" data-name="Excel">
+        <div class="cname">Excel</div>
+        <div class="cissuer">W3 Schools · 2023</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+
+      <button class="cert" data-img="https://verify.w3schools.com/1NGXSTK19O" data-name="Data Science">
+        <div class="cname">Data Science</div>
+        <div class="cissuer">W3 Schools · 2023</div>
+        <span class="cview">View certificate ↗</span>
+      </button>      
+
+      <button class="cert" data-img="certs/Data School.jpg" data-name="Data School">
+        <div class="cname">Data School Graduate</div>
+        <div class="cissuer">Goldman Sachs · 2023</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+
+      <button class="cert" data-img="certs/example.jpg" data-name="Yellow Belt">
+        <div class="cname">Lean Six Sigma: Yellow Belt</div>
+        <div class="cissuer">Goldman Sachs · 20xx</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+
+    </div>
+  </div>
+</section>
+
+
+
+<footer>
+  <div class="wrap">© <span id="yr"></span> Christopher Long. All rights reserved.</div>
+</footer>
+
+<!-- ============ MODAL (no need to edit) ============ -->
+<div class="modal" id="modal">
+  <div class="modal-inner">
+    <button class="modal-close" id="modalClose">×</button>
+    <img id="modalImg" src="" alt="Certificate">
+    <div class="modal-cap" id="modalCap"></div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const modal = document.getElementById('modal');
+  const modalImg = document.getElementById('modalImg');
+  const modalCap = document.getElementById('modalCap');
+
+  document.querySelectorAll('.cert').forEach(c=>{
+    c.addEventListener('click',()=>{
+      if(/^https?:\/\//i.test(c.dataset.img)){
+        window.open(c.dataset.img,'_blank','noopener');
+        return;
+      }
+      modalImg.src = c.dataset.img;
+      modalImg.alt = c.dataset.name;
+      modalCap.textContent = c.dataset.name;
+      modal.classList.add('open');
+    });
+  });
+
+  function closeModal(){modal.classList.remove('open')}
+  document.getElementById('modalClose').addEventListener('click',closeModal);
+  modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+</script>
+</body>
+</html>
