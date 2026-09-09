@@ -198,6 +198,21 @@
 
 <section>
   <div class="wrap">
+    <h2 class="sec-head">Operating Systems (OS)</h2>
+    <div class="certs">
+      
+       <button class="cert" data-img="https://www.coursera.org/account/accomplishments/verify/TG5F8X98RTDZ" data-name="Linux">
+        <div class="cname">Linux Fundamentals</div>
+        <div class="cissuer">Learn Quest · 2024</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
     <h2 class="sec-head">Visualizations</h2>
     <div class="certs">
       
@@ -264,6 +279,12 @@
         <span class="cview">View certificate ↗</span>
       </button>
 
+      <button class="cert" data-img="https://www.coursera.org/account/accomplishments/verify/5MXLC8GEW5MJ" data-name="Python Data Structures">
+        <div class="cname">Python Data Structures</div>
+        <div class="cissuer">University of Michigan · 2024</div>
+        <span class="cview">View certificate ↗</span>
+      </button>
+
       <button class="cert" data-img="https://www.coursera.org/account/accomplishments/verify/AKJ45ZYG4Z6K?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course" data-name="Supervised ML">
         <div class="cname">Supervised Machine Learning</div>
         <div class="cissuer">Stanford University · 2024</div>
@@ -318,10 +339,9 @@
         <span class="cview">View certificate ↗</span>
       </button>
 
-      <button class="cert" data-img="certs/example.jpg" data-name="Data School">
+      <button class="cert" data-name="Data School">
         <div class="cname">Alteryx Core Designer</div>
         <div class="cissuer">Alteryx · 2021</div>
-        <span class="cview">View certificate ↗</span>
       </button>
 
     </div>
@@ -351,16 +371,18 @@
   const modalCap = document.getElementById('modalCap');
 
   document.querySelectorAll('.cert').forEach(c=>{
-    c.addEventListener('click',()=>{
-      if(/^https?:\/\//i.test(c.dataset.img)){
-        window.open(c.dataset.img,'_blank','noopener');
-        return;
-      }
-      modalImg.src = c.dataset.img;
-      modalImg.alt = c.dataset.name;
-      modalCap.textContent = c.dataset.name;
-      modal.classList.add('open');
-    });
+  c.addEventListener('click',()=>{
+    // external links OR any PDF → open in new tab
+    if(/^https?:\/\//i.test(c.dataset.img) || /\.pdf$/i.test(c.dataset.img)){
+      window.open(c.dataset.img,'_blank','noopener');
+      return;
+    }
+    // otherwise show the image in the modal
+    modalImg.src = c.dataset.img;
+    modalImg.alt = c.dataset.name;
+    modalCap.textContent = c.dataset.name;
+    modal.classList.add('open');
+  });
   });
 
   function closeModal(){modal.classList.remove('open')}
