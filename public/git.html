@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christopher Long's — Github Repositories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spline+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fafaf8;
+    --surface:#ffffff;
+    --ink:#1a1a1a;
+    --muted:#6b6b6b;
+    --line:#e4e4e0;
+    --accent:#2d4a3e;
+    --accent-soft:#eef2ef;
+    --shadow:0 1px 3px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.05);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:'Spline Sans',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px}
+
+  /* ---------- HEADER ---------- */
+  header{padding:72px 0 40px;border-bottom:1px solid var(--line)}
+  .name{font-family:'Fraunces',serif;font-size:clamp(2.4rem,6vw,3.6rem);font-weight:500;letter-spacing:-.02em;line-height:1.05}
+  .title{font-size:1.1rem;color:var(--accent);font-weight:500;margin-top:8px}
+  .blurb{color:var(--muted);margin-top:16px;max-width:560px;font-size:1.02rem}
+  .contact{display:flex;flex-wrap:wrap;gap:18px;margin-top:24px;font-size:.92rem;color:var(--muted)}
+  .contact a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:1px;transition:.2s}
+  .contact a:hover{color:var(--accent);border-color:var(--accent)}
+
+  /* ---------- SITE BUTTONS ---------- */
+  .sites{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+  .site-btn{
+    display:flex;flex-direction:column;gap:2px;
+    padding:16px 22px;border-radius:14px;text-decoration:none;
+    background:var(--surface);border:1px solid var(--line);
+    box-shadow:var(--shadow);transition:.22s ease;flex:1;min-width:200px;
+  }
+  .site-btn:hover{transform:translateY(-3px);border-color:var(--accent)}
+  .site-btn .lbl{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:500;color:var(--ink)}
+  .site-btn .desc{font-size:.85rem;color:var(--muted)}
+  .site-btn .arrow{color:var(--accent);font-size:.85rem;margin-top:6px}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:48px 0;border-bottom:1px solid var(--line)}
+  .sec-head{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:500;margin-bottom:28px;letter-spacing:-.01em}
+
+  /* ---------- EXPERIENCE ---------- */
+  .job{display:grid;grid-template-columns:140px 1fr;gap:24px;margin-bottom:34px}
+  .job:last-child{margin-bottom:0}
+  .job .dates{font-size:.88rem;color:var(--muted);padding-top:3px}
+  .job .role{font-weight:600;font-size:1.08rem}
+  .job .company{color:var(--accent);font-size:.96rem;margin-bottom:8px}
+  .job ul{list-style:none;color:var(--muted);font-size:.96rem}
+  .job li{position:relative;padding-left:18px;margin-bottom:5px}
+  .job li::before{content:"–";position:absolute;left:0;color:var(--accent)}
+  @media(max-width:600px){.job{grid-template-columns:1fr;gap:6px}}
+
+  /* ---------- REPO CARDS ---------- */
+  .repos{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+  .repo{
+    display:flex;flex-direction:column;gap:6px;text-decoration:none;
+    background:var(--surface);border:1px solid var(--line);border-radius:14px;
+    padding:22px 24px;box-shadow:var(--shadow);transition:.22s ease;
+  }
+  .repo:hover{transform:translateY(-3px);border-color:var(--accent)}
+  .repo .rtop{display:flex;align-items:center;gap:9px}
+  .repo .ricon{color:var(--accent);flex:none}
+  .repo .rname{font-family:'Fraunces',serif;font-size:1.18rem;font-weight:500;color:var(--ink);letter-spacing:-.01em}
+  .repo .rdesc{color:var(--muted);font-size:.94rem}
+  .repo .rmeta{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:10px}
+  .repo .rlang{display:inline-flex;align-items:center;gap:6px;font-size:.84rem;color:var(--muted)}
+  .repo .rlang::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--accent)}
+  .repo .rvisibility{font-size:.74rem;color:var(--accent);border:1px solid var(--line);border-radius:20px;padding:2px 10px;letter-spacing:.02em}
+  .repo .rview{font-size:.82rem;color:var(--accent);margin-top:8px}
+
+  footer{padding:40px 0 60px;text-align:center;color:var(--muted);font-size:.86rem}
+</style>
+</head>
+<body>
+
+<!-- ============ EDIT YOUR NAME / INTRO / LINKS HERE ============ -->
+<header>
+  <div class="wrap">
+    <h1 class="name">Christopher Long</h1>
+    <p class="title">Full-Stack Engineer | Cybersecurity | Data Engineer | AI Specialist</p>
+    <p class="blurb">A selection of my code repositories. Public repos open on GitHub; private business repos are available for review on request.</p>
+
+    <div class="sites">
+      <a class="site-btn" href="index.html">
+        <span class="lbl">Resume</span>
+        <span class="desc">My resume and professional background</span>
+        <span class="arrow">Visit page →</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ Github Repositories ============ -->
+<!-- For each repo: set href to the GitHub URL. For a PUBLIC repo keep target="_blank".
+     For a PRIVATE repo you'd rather share on request, point href at a mailto: link
+     (example shown on the last card) and change .rvisibility text to "Private". -->
+<section>
+  <div class="wrap">
+    <h2 class="sec-head">GitHub Repositories</h2>
+    <div class="repos">
+
+      <a class="repo" href="https://github.com/chris14304-glitch/pcdn" target="_blank">
+        <div class="rtop">
+          <span class="rname">Public Cyber Defense Network</span>
+        </div>
+        <div class="rdesc">Clear, accurate, and practical security information accessible to everyone.</div>
+        <div class="rmeta">
+          <span class="rlang">HTML: 86.1%, JavaScript: 11.5%, CSS: 2.4%</span>
+          <span class="rvisibility">Public</span>
+        </div>
+        <span class="rview">View on GitHub →</span>
+      </a>
+
+      <a class="repo" href="https://github.com/chris14304-glitch/sentinel" target="_blank">
+        <div class="rtop">
+          <span class="rname">Sentinel</span>
+        </div>
+        <div class="rdesc">Static analysis tool for scanning source code for security vulnerabilities, code quality issues, and potential weaknesses before they reach production.</div>
+        <div class="rmeta">
+          <span class="rlang">JavaScript: 92%, CSS: 7.5%, HTML: 0.5%</span>
+          <span class="rvisibility">Public</span>
+        </div>
+        <span class="rview">View on GitHub →</span>
+      </a>
+
+      <a class="repo" href="https://github.com/yourextendedstay-cyber/airbnb_dashboard" target="_blank">
+        <div class="rtop">
+          <span class="rname">Airbnb Dashboard</span>
+        </div>
+        <div class="rdesc">Tracks booking, occupany, competitors, and insights for data-driven decision making.</div>
+        <div class="rmeta">
+          <span class="rlang">JavaScript: 93.9%, CSS: 5.7%, HTML: 0.4%</span>
+          <span class="rvisibility">Public</span>
+        </div>
+        <span class="rview">View on GitHub →</span>
+      </a>
+
+      <!-- Example of a PRIVATE repo shared on request (mailto instead of a GitHub link) -->
+      <a class="repo" href="mailto:chris14304@gmail.com?subject=Repository%20access%20request%20-%20repo-cmc&body=Hi%20Chris%2C%20I%27d%20like%20to%20request%20access%20to%20review%20your%20repo-cmc%20repository.%20My%20GitHub%20username%20is%3A%20">
+        <div class="rtop">
+          <span class="rname">Choose My Coverage</span>
+        </div>
+        <div class="rdesc">Insurance quote website which bridges information to carriers. Private business repository — access granted on request.</div>
+        <div class="rmeta">
+          <span class="rlang">HTML: 76.4%, JavaScript: 14.3%, TypeScript: 7.5%, CSS: 1.8%</span>
+          <span class="rvisibility">Private</span>
+        </div>
+        <span class="rview">Request access →</span>
+      </a>
+
+      <a class="repo" href="mailto:chris14304@gmail.com?subject=Repository%20access%20request%20-%20repo-ams&body=Hi%20Chris%2C%20I%27d%20like%20to%20request%20access%20to%20review%20your%20repo-ams%20repository.%20My%20GitHub%20username%20is%3A%20">
+        <div class="rtop">
+          <span class="rname">Choose My Coverage AMS</span>
+        </div>
+        <div class="rdesc">Agency Management System for employees to manage customer policies and information. Private business repository — access granted on request.</div>
+        <div class="rmeta">
+          <span class="rlang">TypeScript: 99.6%, Other: 0.4%</span>
+          <span class="rvisibility">Private</span>
+        </div>
+        <span class="rview">Request access →</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© <span id="yr"></span> Christopher Long. All rights reserved.</div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
