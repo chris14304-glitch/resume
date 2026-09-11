@@ -99,6 +99,36 @@
   .modal-close:hover{background:var(--accent-soft)}
 
   footer{padding:40px 0 60px;text-align:center;color:var(--muted);font-size:.86rem}
+
+    .stack-group{margin-bottom:30px}
+  .stack-group:last-child{margin-bottom:0}
+  .stack-label{
+    font-family:'Fraunces',serif;font-size:1.08rem;font-weight:500;
+    color:var(--accent);margin-bottom:14px;letter-spacing:-.01em;
+    display:flex;align-items:center;gap:10px;
+  }
+  .stack-label::after{
+    content:"";flex:1;height:1px;background:var(--line);
+  }
+  .stack-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
+  }
+  .stack-item{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:10px;padding:11px 14px;font-size:.92rem;
+    color:var(--ink);transition:.18s ease;position:relative;
+    padding-left:26px;
+  }
+  .stack-item::before{
+    content:"▸";position:absolute;left:12px;top:11px;
+    color:var(--accent);font-size:.78rem;
+  }
+  .stack-item:hover{
+    border-color:var(--accent);transform:translateY(-2px);
+    box-shadow:var(--shadow);
+  }
+  @media(max-width:760px){.stack-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:440px){.stack-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -137,6 +167,8 @@
         <span class="desc">My Airbnb management platform</span>
         <span class="arrow">Visit site → (Airbnb is closed)</span>
       </a>
+    </div>
+    <div class="pages">
       <a class="site-btn" href="certs.html">
         <span class="lbl">Certifications</span>
         <span class="desc">My certifications and credentials</span>
@@ -198,7 +230,97 @@
     </div>
 
   </div>
-</section>    
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="sec-head">Technical Skills</h2>
+
+    <!-- Languages & Scripting -->
+    <div class="stack-group">
+      <div class="stack-label">Languages &amp; Scripting</div>
+      <div class="stack-grid">
+        <div class="stack-item">Python</div>
+        <div class="stack-item">JavaScript / TypeScript</div>
+        <div class="stack-item">C# / .NET (WPF)</div>
+        <div class="stack-item">SQL / PostgreSQL / MySQL</div>
+        <div class="stack-item">JSX / React</div>
+        <div class="stack-item">HTML</div>
+        <div class="stack-item">CSS</div>
+        <div class="stack-item">VBA</div>
+        <div class="stack-item">R</div>
+      </div>
+    </div>
+
+    <!-- Cybersecurity & Networking -->
+    <div class="stack-group">
+      <div class="stack-label">Cybersecurity &amp; Networking</div>
+      <div class="stack-grid">
+        <div class="stack-item">Vulnerability Code Analysis</div>
+        <div class="stack-item">Network Reconnaissance</div>
+        <div class="stack-item">Port Scanning</div>
+        <div class="stack-item">Secure HTTP Headers</div>
+        <div class="stack-item">XSS / Clickjacking Defense</div>
+        <div class="stack-item">Row Level Security (RLS)</div>
+        <div class="stack-item">Input Validation &amp; Sanitization</div>
+        <div class="stack-item">Secure API Design</div>
+        <div class="stack-item">Digital Forensics (HDD / USB)</div>
+        <div class="stack-item">EXIF / Metadata Privacy</div>
+        <div class="stack-item">Home Lab (Windows / Linux)</div>
+      </div>
+    </div>
+
+    <!-- Cloud, DevOps & Data -->
+    <div class="stack-group">
+      <div class="stack-label">Cloud, DevOps &amp; Data</div>
+      <div class="stack-grid">
+        <div class="stack-item">GitHub / CI-CD</div>
+        <div class="stack-item">Vercel</div>
+        <div class="stack-item">Cloudflare</div>
+        <div class="stack-item">Supabase</div>
+        <div class="stack-item">Snowflake</div>
+        <div class="stack-item">Alteryx</div>
+        <div class="stack-item">ETL / Data Engineering</div>
+        <div class="stack-item">Power BI</div>
+        <div class="stack-item">Tableau</div>
+        <div class="stack-item">Aqua Data Studio</div>
+        <div class="stack-item">JIRA / Confluence</div>
+        <div class="stack-item">Microsoft Azure</div>
+      </div>
+    </div>
+
+    <!-- AI & Machine Learning -->
+    <div class="stack-group">
+      <div class="stack-label">AI &amp; Machine Learning</div>
+      <div class="stack-grid">
+        <div class="stack-item">LLM Evaluation &amp; Testing</div>
+        <div class="stack-item">Prompt Engineering</div>
+        <div class="stack-item">AI Data Annotation</div>
+        <div class="stack-item">Supervised ML (Stanford)</div>
+        <div class="stack-item">Text Analytics / NLP</div>
+        <div class="stack-item">Regression / Classification</div>
+        <div class="stack-item">AI Workflow Automation</div>
+        <div class="stack-item">Grok / Claude / ChatGPT / Gemini / Copilot</div>
+      </div>
+    </div>
+
+    <!-- Microsoft & Productivity -->
+    <div class="stack-group">
+      <div class="stack-label">Microsoft &amp; Productivity</div>
+      <div class="stack-grid">
+        <div class="stack-item">Excel (Advanced / VBA)</div>
+        <div class="stack-item">Access</div>
+        <div class="stack-item">SharePoint / Designer</div>
+        <div class="stack-item">Teams / Outlook</div>
+        <div class="stack-item">Word / PowerPoint</div>
+        <div class="stack-item">Smartsheets</div>
+        <div class="stack-item">OneNote</div>
+        <div class="stack-item">Google Suite</div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 <section>
   <div class="wrap">
@@ -207,7 +329,7 @@
     <div class="job">
       <div class="dates">MAR 2026 — PRESENT</div>
       <div>
-        <div class="role">Security Engineer</div>
+        <div class="role">Security & Systems Engineer</div>
         <div class="company">Public Cyber Defense Network</div>
         <ul>
           <li>Delivering clear, practical, and accessible security education to the public and developers.</li>
